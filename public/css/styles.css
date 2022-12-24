@@ -1,0 +1,10 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.nav-link{
+    transition: color 0.5s;
+}
+.nav-link:hover{
+    color: rgb(147 51 234);
+}
