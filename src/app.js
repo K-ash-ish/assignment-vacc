@@ -1,8 +1,10 @@
 const express = require("express");
 const ejs = require("ejs");
 const bodyParser = require("body-parser");
+const users = require("./users");
+const createUser = require("./createUser");
+const authStatus = require("./authStatus");
 const port = 3000;
-
 const app = express();
 app.use(bodyParser.urlencoded({ extended: true }));
 app.set("view engine", "ejs");
@@ -25,25 +27,57 @@ const vaccineCenters = [
 app
   .route("/")
   .get((req, res) => {
-    let centers =[];
+    let centers = [];
     vaccineCenters.map((center) => {
       return centers.push(center.name);
     });
-    res.render("home", { centers: centers });
+    res.render("home", {
+      centers: centers,
+      authStatus: authStatus.login,
+      authUser: authStatus.userName,
+    });
   })
   .post((req, res) => {
     let vaccineCenter = req.body.vaccineCenter;
-    console.log(vaccineCenter);
   });
 
 //login page route
-app.get("/login", (req, res) => {
-  res.render("login");
-});
+app
+  .route("/login")
+  .get((req, res) => {
+    res.render("login");
+  })
+  .post((req, res) => {
+    authStatus.login = false;
+    let userLogIn = {
+      username: req.body.username,
+      password: req.body.password,
+    };
+    let matchFound;
+    users.map((user) => {
+      if (user.username === userLogIn.username) {
+        authStatus.login = true;
+        authStatus.userName = user.username;
+      }
+    });
+    if (authStatus.login) {
+      res.redirect("/");
+    }
+  });
 //create account route
-app.get("/create", (req, res) => {
-  res.render("create");
-});
+app
+  .route("/create")
+  .get((req, res) => {
+    res.render("create");
+  })
+  .post((req, res) => {
+    let newUser = {
+      username: req.body.username,
+      password: req.body.password,
+    };
+    createUser(newUser);
+    res.redirect("/");
+  });
 app.listen(port, () => {
   console.log("Server Started at port 3000");
 });

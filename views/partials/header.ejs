@@ -10,14 +10,22 @@
   </head>
   <body class="h-screen box-border">
     <nav class="border-2 flex justify-around items-center h-20 bg-slate-100">
-      <a href="/" class="text-3xl ">Vaccine Slot</a>
-      <div class="nav-items w-2/5 flex justify-around items-center">
-        <a href="" class="nav-link text-xl"> About Us</a>
+      <a href="/" class="text-3xl">Vaccine Slot</a>
+      <div class="nav-items flex justify-around items-center">
+        <% if(locals.authStatus){ %>
+        <a
+          href="/login"
+          class="capitalize nav-link text-xl rounded-xl bg-purple-300 py-2 px-4"
+        >
+          SignOut
+        </a>
+        <% } else { %>
         <a
           href="/login"
           class="nav-link text-xl rounded-xl bg-purple-300 py-2 px-4"
-          >LogIn</a
-        >
+          >LogIn
+        </a>
+        <% } %>
       </div>
     </nav>
   </body>
