@@ -1,7 +1,7 @@
 const users = [
     {
-      username: "kashish",
-      password: "kashish",
+      username: "admin",
+      password: "admin",
       isAdmin: true,
     },
     {

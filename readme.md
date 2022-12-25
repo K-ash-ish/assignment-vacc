@@ -7,5 +7,7 @@
  ```
  npm  app.js 
  ```
- 
+ To add more centers
+ >Username: **admin**
+ >Password: **admin**
  
