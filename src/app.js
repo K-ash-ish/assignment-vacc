@@ -48,7 +48,6 @@ app
     res.render("login");
   })
   .post((req, res) => {
-    authStatus.login = false;
     let userLogIn = {
       username: req.body.username,
       password: req.body.password,
@@ -64,6 +63,10 @@ app
       res.redirect("/");
     }
   });
+  app.get("/logout", (req, res)=>{
+    authStatus.login = false;
+    res.redirect("/");
+  })
 //create account route
 app
   .route("/create")
