@@ -3,17 +3,25 @@
   class="form-container w-full h-5/6 flex flex-col justify-center items-center"
 >
   <form
-    action=""
+    action="/add"
+    method="post"
     class="border-2 border-purple-300 rounded-lg w-2/5 h-3/5 flex flex-col items-center justify-center"
   >
     <h2 class="text-xl font-bold mb-6">Add More Centers</h2>
     <input
+      name="name"
       type="text"
       placeholder="Center Name"
       class="my-2 border-2 h-12 w-2/5 px-2"
     />
+    <input
+      name="slots"
+      type="text"
+      placeholder="No Of Slots"
+      class="my-2 border-2 h-12 w-2/5 px-2"
+    />
     <div class="form-btn flex w-2/5 mt-4 justify-around">
-      <button class="border-2 font-bold rounded-lg border-purple-300 w-20 h-10">
+      <button type="submit" class="border-2 font-bold rounded-lg border-purple-300 w-20 h-10">
         Add
       </button>
 

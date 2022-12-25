@@ -1,6 +1,7 @@
 const authStatus = {
   login: false,
-  userName: "LogIn",
+  userName: "",
+  isAdmin: false
 };
 
 module.exports = authStatus;

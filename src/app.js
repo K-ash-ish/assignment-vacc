@@ -35,6 +35,7 @@ app
       centers: centers,
       authStatus: authStatus.login,
       authUser: authStatus.userName,
+      isAdmin: authStatus.isAdmin,
     });
   })
   .post((req, res) => {
@@ -57,16 +58,36 @@ app
       if (user.username === userLogIn.username) {
         authStatus.login = true;
         authStatus.userName = user.username;
+        if (user.isAdmin) {
+          authStatus.isAdmin = true;
+        }
       }
     });
     if (authStatus.login) {
       res.redirect("/");
     }
   });
-  app.get("/logout", (req, res)=>{
-    authStatus.login = false;
-    res.redirect("/");
+app.get("/logout", (req, res) => {
+  authStatus.login = false;
+  authStatus.isAdmin = false;
+  res.redirect("/");
+});
+
+// adding more centers
+app
+  .route("/add")
+  .get((req, res) => {
+    res.render("addcenter");
   })
+  .post((req, res) => {
+    let newCenter = {
+      name: req.body.name,
+      slots: req.body.slots,
+    };
+    vaccineCenters.push(newCenter);
+    res.redirect("/");
+  });
+
 //create account route
 app
   .route("/create")

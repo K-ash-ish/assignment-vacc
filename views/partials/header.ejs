@@ -11,13 +11,16 @@
   <body class="h-screen box-border">
     <nav class="border-2 flex justify-around items-center h-20 bg-slate-100">
       <a href="/" class="text-3xl">Vaccine Slot</a>
-      <div class="nav-items flex justify-around items-center">
+      <div class="nav-items w-2/5 flex justify-around items-center">
+        <% if(locals.isAdmin){ %>
+          <a href="/add" class="nav-link text-xl"> Add Centers </a>
+          <% } %>
         <% if(locals.authStatus){ %>
         <a
           href="/logout"
           class="capitalize nav-link text-xl rounded-xl bg-purple-300 py-2 px-4"
         >
-          SignOut
+        SignOut
         </a>
         <% } else { %>
         <a
